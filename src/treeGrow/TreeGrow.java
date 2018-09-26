@@ -42,6 +42,9 @@ public class TreeGrow {
 		fp.setAutoscrolls(true);
 		scrollFrame.setPreferredSize(fsize);
 	    g.add(scrollFrame);
+
+	    ButtonsPanel bp = new ButtonsPanel();
+	    g.add(bp);
     	
       	frame.setLocationRelativeTo(null);  // Center window on screen.
       	frame.add(g); //add contents to window
