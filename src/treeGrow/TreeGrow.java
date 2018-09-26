@@ -12,6 +12,7 @@ public class TreeGrow {
 	static int frameX;
 	static int frameY;
 	static ForestPanel fp;
+	static Simulation simulation;
 
 	// start timer
 	private static void tick(){
@@ -46,8 +47,16 @@ public class TreeGrow {
       	frame.add(g); //add contents to window
         frame.setContentPane(g);     
         frame.setVisible(true);
+
+
         Thread fpt = new Thread(fp);
         fpt.start();
+	}
+
+	public static void setupSimulation(Tree[] trees, Land land){
+		simulation = new Simulation(land, trees);
+		Thread sim = new Thread(simulation);
+		sim.start();
 	}
 	
 		
@@ -55,20 +64,27 @@ public class TreeGrow {
 		SunData sundata = new SunData();
 		
 		// check that number of command line arguments is correct
-		if(args.length != 1)
-		{
-			System.out.println("Incorrect number of command line arguments. Should have form: java treeGrow.java intputfilename");
-			System.exit(0);
-		}
+//		if(args.length != 1)
+//		{
+//			System.out.println("Incorrect number of command line arguments. Should have form: java treeGrow.java intputfilename");
+//			System.exit(0);
+//		}
 				
 		// read in forest and landscape information from file supplied as argument
-		sundata.readData(args[0]);
+		String fileName = "sample_input.txt";
+		sundata.readData(fileName);
 		System.out.println("Data loaded");
+
+		Land land = sundata.sunmap;
+		Tree[] trees = sundata.trees;
 		
 		frameX = sundata.sunmap.getDimX();
 		frameY = sundata.sunmap.getDimY();
-		setupGUI(frameX, frameY, sundata.trees);
+		setupGUI(frameX, frameY, trees);
 		
 		// create and start simulation loop here as separate thread
+
+		setupSimulation(trees, land);
+
 	}
 }

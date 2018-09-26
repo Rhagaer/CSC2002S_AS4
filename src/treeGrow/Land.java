@@ -3,48 +3,46 @@ package treeGrow;
 public class Land {
 
     // to do
-    // sun exposure data here
-    double[][] exposure;
+    // sun exposureGrid data here
+    float[][] exposureGrid;
+    float[][] shadeGrid;
 
     static float shadefraction = 0.1f; // only this fraction of light is transmitted by a tree
 
     Land(int dx, int dy) {
         // to do
-        exposure = new double[dx][dy];
+        exposureGrid = new float[dx][dy];
+        shadeGrid = new float[dx][dy];
     }
 
     int getDimX() {
-        // to do
-        return 0; // incorrect value
+        return exposureGrid.length;
     }
 
     int getDimY() {
-        // to do
-        return 0; // incorrect value
+        return  exposureGrid[0].length;
     }
 
     // Reset the shaded landscape to the same as the initial sun exposed landscape
     // Needs to be done after each growth pass of the simulator
     void resetShade() {
-        // to do
+        shadeGrid = exposureGrid;
     }
 
     float getFull(int x, int y) {
-        // to do
-        return 0.0f; // incorrect value
+        return exposureGrid[x][y];
     }
 
     void setFull(int x, int y, float val) {
-        // to do
+        exposureGrid[x][y] = val;
     }
 
     float getShade(int x, int y) {
-        // to do
-        return 0.0f; // incorrect value
+        return shadeGrid[x][y];
     }
 
     void setShade(int x, int y, float val) {
-        // to do
+        shadeGrid[x][y] = val;
     }
 
     // reduce the

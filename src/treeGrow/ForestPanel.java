@@ -26,6 +26,8 @@ public class ForestPanel extends JPanel implements Runnable {
 		// start from small trees of [0, 2) extent
 		float minh = 0.0f;
 		float maxh = 2.0f;
+		System.out.println("FP Tree 2 Ext: " + forest[2].getExt() );
+
 		for(int layer = 0; layer <= 10; layer++) {
 			for(int t = 0; t < forest.length; t++){
 				int rt = rndorder.get(t); 
