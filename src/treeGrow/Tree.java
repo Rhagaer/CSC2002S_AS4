@@ -16,6 +16,10 @@ public class Tree {
         ext = e;
     }
 
+    public void reset(){
+        this.ext = 0.4f;
+    }
+
     int getX() {
         return xpos;
     }

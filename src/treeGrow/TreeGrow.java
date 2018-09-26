@@ -1,5 +1,7 @@
 package treeGrow;
 
+import treeGrow.Controller.Controller;
+
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ public class TreeGrow {
 	static int frameY;
 	static ForestPanel fp;
 	static Simulation simulation;
+	static Controller controller;
 
 	// start timer
 	private static void tick(){
@@ -43,7 +46,9 @@ public class TreeGrow {
 		scrollFrame.setPreferredSize(fsize);
 	    g.add(scrollFrame);
 
-	    ButtonsPanel bp = new ButtonsPanel();
+
+
+	    ButtonsPanel bp = new ButtonsPanel(controller);
 	    g.add(bp);
     	
       	frame.setLocationRelativeTo(null);  // Center window on screen.
@@ -60,6 +65,7 @@ public class TreeGrow {
 		simulation = new Simulation(land, trees);
 		Thread sim = new Thread(simulation);
 		sim.start();
+
 	}
 	
 		
@@ -80,6 +86,8 @@ public class TreeGrow {
 
 		Land land = sundata.sunmap;
 		Tree[] trees = sundata.trees;
+
+		controller = new Controller(land, trees);
 		
 		frameX = sundata.sunmap.getDimX();
 		frameY = sundata.sunmap.getDimY();
