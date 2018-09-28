@@ -8,7 +8,7 @@ public class Tree {
     int ypos;    // y-coorindate of center of tree canopy
     float ext;    // extent of canopy out in vertical and horizontal from center
 
-    static float growfactor = 1000.0f; // divide average sun exposureGrid by this amount to get growth in extent
+    static float growfactor = 10.0f; // divide average sun exposureGrid by this amount to get growth in extent
 
     public Tree(int x, int y, float e) {
         xpos = x;
