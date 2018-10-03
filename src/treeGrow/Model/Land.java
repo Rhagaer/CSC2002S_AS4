@@ -1,4 +1,4 @@
-package treeGrow;
+package treeGrow.Model;
 
 public class Land {
 
@@ -9,23 +9,23 @@ public class Land {
 
     static float shadefraction = 0.1f; // only this fraction of light is transmitted by a tree
 
-    Land(int dx, int dy) {
+    public Land(int dx, int dy) {
         // to do
         exposureGrid = new float[dx][dy];
         shadeGrid = new float[dx][dy];
     }
 
-    int getDimX() {
+    public int getDimX() {
         return exposureGrid.length;
     }
 
-    int getDimY() {
+    public int getDimY() {
         return  exposureGrid[0].length;
     }
 
     // Reset the shaded landscape to the same as the initial sun exposed landscape
     // Needs to be done after each growth pass of the simulator
-    void resetShade() {
+    public synchronized void resetShade() {
         shadeGrid = exposureGrid;
     }
 
@@ -33,15 +33,15 @@ public class Land {
         return exposureGrid[x][y];
     }
 
-    void setFull(int x, int y, float val) {
+    public void setFull(int x, int y, float val) {
         exposureGrid[x][y] = val;
     }
 
-    float getShade(int x, int y) {
+    synchronized float getShade(int x, int y) {
         return shadeGrid[x][y];
     }
 
-    void setShade(int x, int y, float val) {
+    synchronized void setShade(int x, int y, float val) {
         shadeGrid[x][y] = val;
     }
 

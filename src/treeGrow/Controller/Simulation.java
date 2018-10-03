@@ -1,32 +1,36 @@
-package treeGrow;
+package treeGrow.Controller;
 
-import java.awt.*;
+import treeGrow.Model.Land;
+import treeGrow.Model.Tree;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Simulation implements Runnable {
 
     Tree[] trees;
     Land land;
 
-    public static int numGenerations;
-    public static boolean paused;
+    public static AtomicInteger numGenerations;
+    public static AtomicBoolean paused;
 
     public Simulation(Land land, Tree[] trees) {
         this.trees = trees;
         this.land = land;
-        numGenerations = 0;
-        paused = false;
+        numGenerations = new AtomicInteger(0);
+        paused = new AtomicBoolean(false);
     }
 
     public static void reset() {
-        numGenerations = 0;
+        numGenerations.set(0);
     }
 
     public static void pause() {
-        paused = true;
+        paused.set(true);
     }
 
     public static void play() {
-        paused = false;
+        paused.set(false);
         System.out.println("Status: " + paused);
     }
 
@@ -34,9 +38,8 @@ public class Simulation implements Runnable {
     public void run() {
 
         while (true) {
-            if (!paused) {
-                System.out.println("Sim Tree 2 Ext: " + trees[2].getExt());
-                numGenerations++;
+            if (!paused.get()) {
+                numGenerations.getAndIncrement();
                 float minh = 18.0f;
                 float maxh = 20.0f;
                 land.resetShade();
@@ -44,7 +47,6 @@ public class Simulation implements Runnable {
                     for (int t = 0; t < trees.length; t++) {
                         if (trees[t].inrange(minh, maxh)) {
                             trees[t].sungrow(land);
-
                         }
                     }
                     maxh = minh;  // next band of trees
@@ -55,7 +57,7 @@ public class Simulation implements Runnable {
                 System.out.println(paused);
             }
             try {
-                Thread.sleep(2000);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

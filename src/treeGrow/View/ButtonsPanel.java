@@ -1,8 +1,10 @@
-package treeGrow;
+package treeGrow.View;
 
+import treeGrow.Controller.Simulation;
 import treeGrow.View.CommandListener;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,13 +14,16 @@ public class ButtonsPanel extends JPanel {
 
 
     public ButtonsPanel(CommandListener commandListener){
+        this.commandListener = commandListener;
 
         JButton resetBtn = new JButton("Reset");
         JButton pauseBtn = new JButton("Pause");
         JButton playBtn = new JButton("Play");
         JButton endBtn = new JButton("End");
 
+        JLabel label = new JLabel("Number Generations: ");
 
+        this.add(label);
         this.add(resetBtn);
         this.add(pauseBtn);
         this.add(playBtn);

@@ -1,12 +1,8 @@
 package treeGrow.Controller;
 
-import com.sun.org.apache.bcel.internal.generic.LNEG;
-import treeGrow.Land;
-import treeGrow.Simulation;
-import treeGrow.Tree;
+import treeGrow.Model.Land;
+import treeGrow.Model.Tree;
 import treeGrow.View.CommandListener;
-
-import java.lang.reflect.Array;
 
 public class Controller implements CommandListener{
 

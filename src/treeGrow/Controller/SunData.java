@@ -1,4 +1,7 @@
-package treeGrow;
+package treeGrow.Controller;
+
+import treeGrow.Model.Land;
+import treeGrow.Model.Tree;
 
 import java.io.File;
 import java.io.IOException;
